@@ -1,30 +1,20 @@
-﻿Console.WriteLine("Enter a number...");
-int input = int.Parse(Console.ReadLine());
-Console.WriteLine(IsPalindrome(input));
+﻿string[] inputWords = { "flower", "flow", "flight" };
 
-bool IsPalindrome(int x)
+Console.WriteLine(longestCommonPrefix(inputWords));
+
+string longestCommonPrefix(string[] strs)
 {
-    string xString = x.ToString();
-    string reversedString = "";
-    for (int i = xString.Length - 1; i >= 0; i--)
+    if (strs.Length == 0)
     {
-        reversedString += xString[i];
+        return "";
     }
-    if (reversedString.Contains("-"))
+    string prefix = strs[0];
+    for (int i = 1; i < strs.Length; i++)
     {
-        return false;
-    }
-    else
-    {
-        long reversedNumber = long.Parse(reversedString);
-        if (reversedNumber == x)
+        while (strs[i].IndexOf(prefix) != 0)
         {
-            return true;
-        }
-        else
-        {
-            return false;
+            prefix = prefix.Substring(0, prefix.Length - 1);
         }
     }
-    
+    return prefix;
 }
