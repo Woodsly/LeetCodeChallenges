@@ -1,20 +1,23 @@
-﻿string[] inputWords = { "flower", "flow", "flight" };
+﻿LengthOfLastWord("   fly me   to   the moon  ");
 
-Console.WriteLine(longestCommonPrefix(inputWords));
-
-string longestCommonPrefix(string[] strs)
+int LengthOfLastWord(string s)
 {
-    if (strs.Length == 0)
+    if (string.IsNullOrEmpty(s))
     {
-        return "";
+        return 0;
     }
-    string prefix = strs[0];
-    for (int i = 1; i < strs.Length; i++)
+    int lastspace = 0;
+    int length = 0;
+    string sTrim = s.Trim();
+    for (int i = 0; i < sTrim.Length; i++)
     {
-        while (strs[i].IndexOf(prefix) != 0)
+        if (sTrim[i] == ' ')
         {
-            prefix = prefix.Substring(0, prefix.Length - 1);
+            lastspace = i;
         }
     }
-    return prefix;
+    string word = sTrim.Substring(lastspace, sTrim.Length - lastspace);
+    string strimmer = word.Trim();
+    length = strimmer.Length;
+    return length;
 }
